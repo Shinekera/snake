@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Animal</h2>
+<form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">{{ form.name.label }} {{ form.name(class="form-control") }}</div>
+    <div class="mb-3">{{ form.species.label }} {{ form.species(class="form-select") }}</div>
+    <div class="mb-3">{{ form.age.label }} {{ form.age(class="form-control") }}</div>
+    <div class="mb-3">{{ form.city.label }} {{ form.city(class="form-control") }}</div>
+    <div class="mb-3">{{ form.description.label }} {{ form.description(class="form-control") }}</div>
+    <div class="mb-3">{{ form.photo.label }} {{ form.photo(class="form-control") }}</div>
+    <div class="mb-3">{{ form.contact.label }} {{ form.contact(class="form-control") }}</div>
+    {{ form.submit(class="btn btn-success") }}
+</form>
+{% endblock %}

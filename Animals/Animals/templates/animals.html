@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Available Animals</h2>
+<form class="row g-3 mb-4">
+    <div class="col-md-3">
+        <select name="species" class="form-select">
+            <option value="">Any species</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <input type="text" name="city" placeholder="City" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <input type="number" name="min_age" placeholder="Min age" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <input type="number" name="max_age" placeholder="Max age" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary">Filter</button>
+    </div>
+</form>
+<div class="row">
+    {% for animal in animals %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            {% if animal.photo %}
+            <img src="{{ url_for('uploaded_file', filename=animal.photo) }}" class="card-img-top">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ animal.name }}</h5>
+                <p class="card-text">{{ animal.species }}, {{ animal.age }} years</p>
+                <a href="{{ url_for('animal_detail', animal_id=animal.id) }}" class="btn btn-outline-primary">Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
